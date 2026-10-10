@@ -282,10 +282,7 @@ def commit_menu_change(data, sha, cfg, message):
     save_github_menu(data, sha, cfg, message)
 
 
-@admin_bp.route("/admin")
-@login_required
-def admin_dashboard():
-    DASHBOARD_TEMPLATE = """
+DASHBOARD_TEMPLATE = """
 <!doctype html>
 <html lang="en">
 <head>

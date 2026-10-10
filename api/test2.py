@@ -2,6 +2,8 @@ from collections import defaultdict
 import json,re
 from pathlib import Path
 from flask import Flask,render_template_string,redirect,url_for
+import os
+from admin_auth import admin_bp
 
 app=Flask(__name__)
 BASE_DIR=Path(__file__).resolve().parent.parent
@@ -10,6 +12,14 @@ BUFFET_CATEGORIES=["Main Course","Raita","Dal","Rice","Breads","Paneer","Vegetab
 BUFFET_PRICE={"indoor":500,"outdoor":550}
 BUFFET_MIN_PERSONS=60
 MAX_QTY=12
+
+app.secret_key = os.environ.get("FLASK_SECRET_KEY")
+
+if not app.secret_key:
+    raise RuntimeError("FLASK_SECRET_KEY environment variable is missing.")
+
+app.register_blueprint(admin_bp)
+
 
 def slugify(text):
     text=re.sub(r"[^\w\s-]","",str(text).lower())
@@ -159,6 +169,7 @@ body{background:var(--bg);font-family:'Plus Jakarta Sans',sans-serif;color:var(-
 <div class="hero-banner text-center">
 <div class="d-flex justify-content-between align-items-center mb-2">
 <span class="status-pill"><i class="bi bi-clock-fill me-1"></i>Open • 11 AM - 12 PM</span>
+<div class="text-end px-3 pt-3"> <a href="/admin/login" class="btn btn-sm" style="background:#4a0e17;color:#d4af37; border:1px solid #d4af37;border-radius:10px; font-weight:800;padding:8px 14px;"> <i class="bi bi-shield-lock-fill me-1"></i> Admin Panel </a> </div>
 <span class="status-pill"><i class="bi bi-star-fill me-1" style="color:var(--gold)"></i>4.9 (9.2k+)</span>
 </div>
 <h1 class="brand-header">🛕 VRINDAVAN DHABA Testing 2.0</h1>
