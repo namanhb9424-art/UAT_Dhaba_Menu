@@ -1,18 +1,9 @@
-.venv/
-__pycache__/
-*.pyc
-.vercel/
-api/app.py
-api/test.py
-.env
-*.json
-
-
+@'
 .env
 .env.*
 !.env.example
-
 __pycache__/
 *.py[cod]
 .venv/
 venv/
+'@ | Set-Content -Encoding utf8 .gitignore

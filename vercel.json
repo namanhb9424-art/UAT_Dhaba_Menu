@@ -1,0 +1,1 @@
+{"version":2,"builds":[{"src":"api/test2.py","use":"@vercel/python"}],"routes":[{"src":"/(.*)","dest":"api/test2.py"}]}
