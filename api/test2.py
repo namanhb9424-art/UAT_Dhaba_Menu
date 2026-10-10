@@ -3,7 +3,7 @@ import json,re
 from pathlib import Path
 from flask import Flask,render_template_string,redirect,url_for
 import os
-from admin_auth import admin_bp
+from api.admin_auth import admin_bp
 
 app=Flask(__name__)
 BASE_DIR=Path(__file__).resolve().parent.parent
